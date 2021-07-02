@@ -46,8 +46,6 @@ export class CaRegistrator extends NodejsFunction {
       timeout: Duration.seconds(10),
       memorySize: 256,
     });
-    this.addEnvironment('DEIVCE_ACTIVATOR_ROLE_ARN', props.reviewReceptor.acceptionRole.roleArn);
-    this.addEnvironment('DEIVCE_ACTIVATOR_QUEUE_URL', props.reviewReceptor.queueUrl);
     this.addEnvironment('BUCKET_NAME', props.vault.bucket.bucketName);
     this.addEnvironment('BUCKET_PREFIX', props.vault.prefix ?? '');
     this.addEnvironment('VERIFIERS', JSON.stringify(
