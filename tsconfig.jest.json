@@ -28,7 +28,8 @@
     ".projenrc.js",
     "src/**/*.ts",
     "test/**/*.ts",
-    "lambda-assets"
+    "lambda-assets",
+    "esbuild"
   ],
   "exclude": [
     "node_modules"
