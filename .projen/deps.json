@@ -110,6 +110,10 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-solutions-constructs/aws-lambda-sqs",
+      "type": "bundled"
+    },
+    {
       "name": "@softchef/lambda-events",
       "type": "bundled"
     },

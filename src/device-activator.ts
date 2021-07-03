@@ -4,7 +4,6 @@ import {
   Effect,
   Policy,
 } from '@aws-cdk/aws-iam';
-// import * as lambda from '@aws-cdk/aws-lambda';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import { Construct } from '@aws-cdk/core';
 
