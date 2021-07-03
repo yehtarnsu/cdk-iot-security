@@ -43,6 +43,7 @@ const project = new AwsCdkConstructLibrary({
         'DOM',
         'ES2020',
       ],
+      experimentalDecorators: true,
     },
   },
   eslintOptions: {

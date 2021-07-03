@@ -13,7 +13,7 @@ import {
 import { mockClient } from 'aws-sdk-client-mock';
 import { handler } from '../../../lambda-assets/ca-registrator/app';
 import {
-  VerifierError,
+  VerifierNotFoundError,
   InputError,
   InformationNotFoundError,
 } from '../../../lambda-assets/ca-registrator/errors';
@@ -141,7 +141,7 @@ describe('Fail on the provided wrong input data', () => {
       },
     });
     var response = await handler(eventWithWrongVerifier);
-    expect(response.statusCode).toBe(VerifierError.code);
+    expect(response.statusCode).toBe(VerifierNotFoundError.code);
   });
 
   test('Fail when provide the wrong format of CSR subjects', async () => {
@@ -159,7 +159,7 @@ test('No bucket prefix is provided', async () => {
 });
 
 test('Get Error Codes successfully', () => {
-  expect(new VerifierError().code).toBe(VerifierError.code);
+  expect(new VerifierNotFoundError().code).toBe(VerifierNotFoundError.code);
   expect(new InputError().code).toBe(InputError.code);
   expect(new InformationNotFoundError().code).toBe(InformationNotFoundError.code);
 });
