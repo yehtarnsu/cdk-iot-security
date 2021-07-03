@@ -27,10 +27,6 @@
       "type": "build"
     },
     {
-      "name": "esbuild",
-      "type": "build"
-    },
-    {
       "name": "eslint",
       "type": "build"
     },
@@ -107,10 +103,6 @@
     },
     {
       "name": "@aws-sdk/client-s3",
-      "type": "bundled"
-    },
-    {
-      "name": "@aws-solutions-constructs/aws-lambda-sqs",
       "type": "bundled"
     },
     {
