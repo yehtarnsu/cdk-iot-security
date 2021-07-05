@@ -7,7 +7,14 @@ const CsrSubjectsSchema: Joi.ObjectSchema = Joi.object({
   localityName: Joi.string().allow('').default(''),
   organizationName: Joi.string().allow('').default(''),
   organizationUnitName: Joi.string().allow('').default(''),
-}).unknown(true);
+}).unknown(true).default({
+  commonName: '',
+  countryName: '',
+  stateName: '',
+  localityName: '',
+  organizationName: '',
+  organizationUnitName: '',
+});
 
 export const EventSchema: Joi.ObjectSchema = Joi.object({
   verifierName: Joi.string().allow('', null).default(''),

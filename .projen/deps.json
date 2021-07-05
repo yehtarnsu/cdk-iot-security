@@ -110,6 +110,10 @@
       "type": "bundled"
     },
     {
+      "name": "@hapi/boom",
+      "type": "bundled"
+    },
+    {
       "name": "@softchef/lambda-events",
       "type": "bundled"
     },

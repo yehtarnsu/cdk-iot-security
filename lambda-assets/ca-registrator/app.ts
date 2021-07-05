@@ -8,14 +8,15 @@ import {
   S3Client,
   PutObjectCommand,
 } from '@aws-sdk/client-s3';
-import {
-  Request,
-  Response,
-} from '@softchef/lambda-events';
+// import {
+//   Request,
+//   Response,
+// } from '@softchef/lambda-events';
+import { LimitedLambdaHandler } from '../limited-lambda-handler';
 import { CertificateGenerator } from './certificate-generator';
 import {
   VerifierNotFoundError,
-  InputError,
+  // InputError,
   InformationNotFoundError,
 } from './errors';
 import {
@@ -28,6 +29,11 @@ interface Event {
   csrSubjects: CertificateGenerator.CsrSubjects;
 }
 
+// interface HttpEvent {
+//   body: Event,
+//   [key: string]: any,
+// }
+
 interface BucketProps {
   name: string;
   prefix: string;
@@ -38,31 +44,18 @@ interface BucketProps {
  * @param event The HTTP request from the API gateway.
  * @returns The HTTP response containing the registration result.
  */
-export const handler = async (event: any = {}) : Promise <any> => {
-  const request: Request = new Request(event);
-  const response: Response = new Response();
+export const handler = new LimitedLambdaHandler<Event>(async (event: Event) => {
   const bucketInfo: BucketProps = {
     name: process.env.BUCKET_NAME!,
     prefix: process.env.BUCKET_PREFIX || '',
   };
-
-  try {
-    const validEvent: Event = await EventSchema.validateAsync({
-      verifierName: request.input('verifierName'),
-      csrSubjects: request.input('csrSubjects') ?? {},
-    }).catch((error: Error) => {
-      throw new InputError(error.message);
-    });
-    const verifierName = extractVerifierName(validEvent.verifierName);
-    const csrSubjects = await buildCsrSubjects(validEvent.csrSubjects);
-    const certificates = CertificateGenerator.getCaRegistrationCertificates(csrSubjects);
-    const { certificateId, certificateArn } = await registerCa(certificates, verifierName);
-    await saveCertificates(bucketInfo, certificateId, certificateArn, certificates);
-    return response.json({ certificateId: certificateId });
-  } catch (error) {
-    return response.error(error, error.code);
-  }
-};
+  const verifierName = extractVerifierName(event.verifierName);
+  const csrSubjects = await buildCsrSubjects(event.csrSubjects);
+  const certificates = CertificateGenerator.getCaRegistrationCertificates(csrSubjects);
+  const { certificateId, certificateArn } = await registerCa(certificates, verifierName);
+  await saveCertificates(bucketInfo, certificateId, certificateArn, certificates);
+  return { certificateId: certificateId };
+}, EventSchema).httpResponseHandler;
 
 function extractVerifierName(verifierName: string): string {
   if (verifierName && !(verifierName = [...JSON.parse(process.env.VERIFIERS!)].find(x => x === verifierName) ?? '')) {
@@ -75,7 +68,7 @@ async function buildCsrSubjects (csrSubjects: CertificateGenerator.CsrSubjects):
   const { registrationCode } = await new IoTClient({}).send(
     new GetRegistrationCodeCommand({}),
   );
-  Object.assign(csrSubjects, { commonName: registrationCode });
+  csrSubjects = Object.assign(csrSubjects, { commonName: registrationCode });
   return csrSubjects;
 }
 

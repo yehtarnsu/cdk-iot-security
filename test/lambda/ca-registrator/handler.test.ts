@@ -149,6 +149,7 @@ describe('Fail on the provided wrong input data', () => {
       body: { csrSubjects: { commonName: {} } },
     });
     var response = await handler(eventWithWrongFormatCsrSubject);
+    console.log(response);
     expect(response.statusCode).toBe(InputError.code);
   });
 });
