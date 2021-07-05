@@ -8,15 +8,11 @@ import {
   S3Client,
   PutObjectCommand,
 } from '@aws-sdk/client-s3';
-// import {
-//   Request,
-//   Response,
-// } from '@softchef/lambda-events';
 import { LimitedLambdaHandler } from '../limited-lambda-handler';
 import { CertificateGenerator } from './certificate-generator';
+// import { CaRegistrationDealer } from './dealer';
 import {
   VerifierNotFoundError,
-  // InputError,
   InformationNotFoundError,
 } from './errors';
 import {
@@ -28,11 +24,6 @@ interface Event {
   verifierName: string;
   csrSubjects: CertificateGenerator.CsrSubjects;
 }
-
-// interface HttpEvent {
-//   body: Event,
-//   [key: string]: any,
-// }
 
 interface BucketProps {
   name: string;

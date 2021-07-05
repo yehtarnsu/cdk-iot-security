@@ -28,11 +28,9 @@ const project = new AwsCdkConstructLibrary({
     '@aws-sdk/client-s3',
     '@aws-sdk/client-lambda',
     '@softchef/lambda-events',
-    '@hapi/boom',
   ],
   devDeps: [
     'aws-sdk-client-mock',
-    'esbuild',
   ],
   tsconfig: {
     include: [
