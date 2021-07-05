@@ -31,7 +31,6 @@ const project = new AwsCdkConstructLibrary({
   ],
   devDeps: [
     'aws-sdk-client-mock',
-    'esbuild',
   ],
   tsconfig: {
     include: [
@@ -43,6 +42,7 @@ const project = new AwsCdkConstructLibrary({
         'DOM',
         'ES2020',
       ],
+      experimentalDecorators: true,
     },
   },
   eslintOptions: {

@@ -1,6 +1,28 @@
 import * as forge from 'node-forge';
 import { pki } from 'node-forge';
 
+export namespace CertificateGenerator {
+  export interface CsrSubjects {
+    commonName?: string;
+    countryName?: string;
+    stateName?: string;
+    localityName?: string;
+    organizationName?: string;
+    organizationUnitName?: string;
+  }
+
+  export interface CaRegistrationRequiredCertificates {
+    ca: CertificateSet;
+    verification: CertificateSet;
+  }
+
+  export interface CertificateSet {
+    publicKey: string;
+    privateKey: string;
+    certificate: string;
+  }
+}
+
 export class CertificateGenerator {
 
   /**
@@ -129,27 +151,5 @@ export class CertificateGenerator {
       shortName: 'OU',
       value: props.organizationUnitName || '',
     }];
-  }
-}
-
-export namespace CertificateGenerator {
-  export interface CsrSubjects {
-    commonName?: string;
-    countryName?: string;
-    stateName?: string;
-    localityName?: string;
-    organizationName?: string;
-    organizationUnitName?: string;
-  }
-
-  export interface CaRegistrationRequiredCertificates {
-    ca: CertificateSet;
-    verification: CertificateSet;
-  }
-
-  export interface CertificateSet {
-    publicKey: string;
-    privateKey: string;
-    certificate: string;
   }
 }

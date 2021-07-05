@@ -3684,11 +3684,6 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild@^0.12.14:
-  version "0.12.14"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.14.tgz#43157dbd0b36d939247d4eb4909a4886ac40f82e"
-  integrity sha512-z8p+6FGiplR7a3pPonXREbm+8IeXjBGvDpVidZmGB/AJMsJSfGCU+n7KOMCazA9AwvagadRWBhiKorC0w9WJvw==
-
 escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
@@ -6690,10 +6685,10 @@ progress@^2.0.0, progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.24.12:
-  version "0.24.12"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.24.12.tgz#9106bee793057f66d178714944611f92febdbd7a"
-  integrity sha512-WJ4saVlYG9TC5p+qs1W/m53vpu7I2zcrVneB2IgKeW+4lHd11LKNmUHty/AxvaAAg254aoYyTMIfmGEhf2U+zw==
+projen@^0.24.17:
+  version "0.24.17"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.24.17.tgz#96890f507f3910bc2c25fed95a07eb6bdff17fc4"
+  integrity sha512-OwBVZ3HLPrkS2hNNMyxqPbGAeuX9AipeZAscXlppbbP4xrTAPMMaUbXGSUQyCqhsE4b/oA7ZvKUuQh5ET1fJ9w==
   dependencies:
     "@iarna/toml" "^2.2.5"
     chalk "^4.1.1"
